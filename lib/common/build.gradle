@@ -1,0 +1,43 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk rootProject.ext.android.compileSdk
+
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdk
+        targetSdk rootProject.ext.android.targetSdk
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+//    implementation rootProject.ext.dependencie["core_ktx"]
+//    implementation rootProject.ext.dependencie["appcompat"]
+//    implementation rootProject.ext.dependencie["material"]
+//    implementation rootProject.ext.dependencie["constraintlayout"]
+//    testImplementation rootProject.ext.dependencie["junit"]
+//    androidTestImplementation rootProject.ext.dependencie["ext_junit"]
+//    androidTestImplementation rootProject.ext.dependencie["espresso_core"]
+}

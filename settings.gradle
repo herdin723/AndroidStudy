@@ -8,3 +8,12 @@ dependencyResolutionManagement {
 }
 rootProject.name = "AndroidStudy"
 include ':app'
+include ':lib'
+include ':module'
+include ':lib:base'
+include ':lib:common'
+
+
+include ':jetpack:hint'
+include ':jetpack:room'
+include ':lib:network'

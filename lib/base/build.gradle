@@ -1,0 +1,62 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+
+    compileSdk rootProject.ext.android.compileSdk
+
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdk
+        targetSdk rootProject.ext.android.targetSdk
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [AROUTER_MODULE_NAME: project.getName()]
+//            }
+//        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+//kapt {
+//    arguments {
+//        arg("AROUTER_MODULE_NAME", project.getName())
+//    }
+//}
+
+dependencies {
+
+    api rootProject.ext.dependencie["core_ktx"]
+    api rootProject.ext.dependencie["appcompat"]
+    api rootProject.ext.dependencie["material"]
+    api rootProject.ext.dependencie["constraintlayout"]
+    testImplementation rootProject.ext.dependencie["junit"]
+    androidTestImplementation rootProject.ext.dependencie["ext_junit"]
+    androidTestImplementation rootProject.ext.dependencie["espresso_core"]
+
+    api project(path: ':lib:common')
+
+    api 'com.alibaba:arouter-api:1.5.2'
+//    kapt 'com.alibaba:arouter-compiler:1.5.2'
+
+}

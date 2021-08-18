@@ -1,0 +1,65 @@
+apply from: "${rootProject.rootDir}/config.gradle"
+project.ext {
+    setAppConfig = {
+        app ->
+            app.plugins {
+                id 'com.android.application'
+                id 'kotlin-android'
+                id 'kotlin-kapt'
+            }
+            setAndroidConfig app.android
+            setDependenciesConfig app.dependencies
+    }
+    setLibConfig = {
+        lib ->
+            lib.plugins {
+                id 'com.android.library'
+                id 'kotlin-android'
+                id 'kotlin-kapt'
+            }
+            setAndroidConfig lib.android
+            setDependenciesConfig lib.dependencies
+    }
+
+
+    setAndroidConfig = {
+        android ->
+            android.compileSdk rootProject.ext.android.compileSdk
+            android.defaultConfig {
+//                applicationId "com.herdin.android.study"
+                minSdk rootProject.ext.android.minSdk
+                targetSdk rootProject.ext.android.targetSdk
+                versionCode rootProject.ext.android.versionCode
+                versionName rootProject.ext.android.versionName
+
+                testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+            }
+            android.buildTypes {
+                release {
+                    minifyEnabled false
+                    proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                }
+            }
+            android.compileOptions {
+                sourceCompatibility JavaVersion.VERSION_1_8
+                targetCompatibility JavaVersion.VERSION_1_8
+            }
+            android.kotlinOptions {
+                jvmTarget = '1.8'
+            }
+//            //gradle命名提示机制，让各module中资源名必须按一定前缀规则，有助于防止组件化多module时的资源冲突
+//            android.resourcePrefix "app_"
+
+    }
+    setDependenciesConfig = {
+        dependencies ->
+            dependencies.implementation rootProject.ext.dependencie["core_ktx"]
+            dependencies.implementation rootProject.ext.dependencie["appcompat"]
+            dependencies.implementation rootProject.ext.dependencie["material"]
+            dependencies.implementation rootProject.ext.dependencie["constraintlayout"]
+            dependencies.testImplementation rootProject.ext.dependencie["junit"]
+            dependencies.androidTestImplementation rootProject.ext.dependencie["ext_junit"]
+            dependencies.androidTestImplementation rootProject.ext.dependencie["espresso_core"]
+
+    }
+}
