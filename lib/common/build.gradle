@@ -33,11 +33,11 @@ android {
 
 dependencies {
 
-//    implementation rootProject.ext.dependencie["core_ktx"]
-//    implementation rootProject.ext.dependencie["appcompat"]
-//    implementation rootProject.ext.dependencie["material"]
-//    implementation rootProject.ext.dependencie["constraintlayout"]
-//    testImplementation rootProject.ext.dependencie["junit"]
-//    androidTestImplementation rootProject.ext.dependencie["ext_junit"]
-//    androidTestImplementation rootProject.ext.dependencie["espresso_core"]
+    implementation rootProject.ext.dependencie["core_ktx"]
+    implementation rootProject.ext.dependencie["appcompat"]
+    implementation rootProject.ext.dependencie["material"]
+    implementation rootProject.ext.dependencie["constraintlayout"]
+    testImplementation rootProject.ext.dependencie["junit"]
+    androidTestImplementation rootProject.ext.dependencie["ext_junit"]
+    androidTestImplementation rootProject.ext.dependencie["espresso_core"]
 }

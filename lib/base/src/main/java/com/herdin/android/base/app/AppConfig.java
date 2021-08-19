@@ -1,4 +1,4 @@
-package com.herdin.android.base;
+package com.herdin.android.base.app;
 
 /**
  * Copyright © 2014-2021, ArcVideo 杭州当虹科技股份有限公司
@@ -13,5 +13,6 @@ public class AppConfig {
     public static final String[] APPS = {
             "com.herdin.android.hint.app.HintApp",
             "com.herdin.android.room.app.RoomApp",
+            "com.herdin.android.datastore.app.DataStoreApp",
     };
 }

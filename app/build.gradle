@@ -39,7 +39,7 @@ android {
     buildFeatures{
         dataBinding = true
         // for view binding :
-        // viewBinding = true
+//         viewBinding = true
     }
     //gradle命名提示机制，让各module中资源名必须按一定前缀规则，有助于防止组件化多module时的资源冲突
 //    resourcePrefix "app_"

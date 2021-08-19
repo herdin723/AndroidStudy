@@ -2,8 +2,7 @@ package com.herdin.android.room.app
 
 import android.app.Application
 import android.util.Log
-import com.herdin.android.base.BaseActivity
-import com.herdin.android.base.BaseApplication
+import com.herdin.android.base.app.BaseApplication
 
 /**
  * Copyright © 2014-2021, ArcVideo 杭州当虹科技股份有限公司
@@ -14,7 +13,7 @@ import com.herdin.android.base.BaseApplication
  * @desc:
  * @version: V-1.0.0
  **/
-class RoomApp:BaseApplication() {
+class RoomApp: BaseApplication() {
 
     private val TAG = RoomApp::class.java.simpleName
 

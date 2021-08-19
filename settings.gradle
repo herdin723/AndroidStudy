@@ -12,8 +12,8 @@ include ':lib'
 include ':module'
 include ':lib:base'
 include ':lib:common'
-
+include ':lib:network'
 
 include ':jetpack:hint'
 include ':jetpack:room'
-include ':lib:network'
+include ':jetpack:datastore'

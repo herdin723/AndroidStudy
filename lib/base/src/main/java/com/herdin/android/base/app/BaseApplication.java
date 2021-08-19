@@ -1,4 +1,4 @@
-package com.herdin.android.base;
+package com.herdin.android.base.app;
 
 import android.app.Application;
 import android.content.Context;
@@ -25,11 +25,15 @@ public abstract class BaseApplication extends Application {
         super.onCreate();
         Log.d(TAG, "onCreate: base");
         mContext = this;
-        if (isDebug()) {           // 这两行必须写在init之前，否则这些配置在init过程中将无效
-            ARouter.openLog();     // 打印日志
-            ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        // 这两行必须写在init之前，否则这些配置在init过程中将无效
+        if (isDebug()) {
+            // 打印日志
+            ARouter.openLog();
+            // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+            ARouter.openDebug();
         }
-        ARouter.init(this); // 尽可能早，推荐在Application中初始化
+        // 尽可能早，推荐在Application中初始化
+        ARouter.init(this);
     }
 
     public boolean isDebug(){
@@ -41,12 +45,14 @@ public abstract class BaseApplication extends Application {
     }
 
     /**
-      * Application 初始化
+     * Application 初始化
+     * @param application
      */
     public abstract void initModuleApp(Application application);
 
     /**
      * 所有 Application 初始化后的自定义操作
+     *  @param application
      */
     public abstract void initModuleData(Application application);
 }
