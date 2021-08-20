@@ -24,4 +24,9 @@ public interface RouterPage {
      * room模块
      */
     String ROOM_MAIN = "/room/main";
+
+    /**
+     * datastore模块
+     */
+    String DATASTORE_MAIN = "/datastore/main";
 }

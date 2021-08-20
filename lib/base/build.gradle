@@ -58,6 +58,7 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencie["espresso_core"]
 
     api project(path: ':lib:common')
+    api project(path: ':lib:network')
 
     api 'com.alibaba:arouter-api:1.5.2'
 //    kapt 'com.alibaba:arouter-compiler:1.5.2'
@@ -66,5 +67,7 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences:1.0.0"
     //    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0"
     api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
+
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
 
 }

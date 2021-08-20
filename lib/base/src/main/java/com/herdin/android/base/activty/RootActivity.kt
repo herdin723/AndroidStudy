@@ -48,7 +48,6 @@ open class RootActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        ARouter.getInstance().destroy()
     }
 
 
