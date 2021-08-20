@@ -1,0 +1,71 @@
+package com.herdin.android.study.activity
+
+import android.view.View
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
+import com.herdin.android.base.RouterPage
+import com.herdin.android.base.activty.BaseActivity
+import com.herdin.android.base.showToast
+import com.herdin.android.base.toVisible
+import com.herdin.android.base.utils.LiveDataBus
+import com.herdin.android.study.R
+import com.herdin.android.study.adapter.CategoryAdapter
+import com.herdin.android.study.bean.CategoryBean
+import com.herdin.android.study.databinding.ActivityMainBinding
+import com.herdin.android.study.vm.MainViewModel
+
+
+@Route(path = RouterPage.MAIN_MAIN)
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
+
+    fun onClick(view: View) {
+
+        ARouter.getInstance().build(RouterPage.DATASTORE_MAIN).navigation()
+    }
+
+
+    private val mAdapter by lazy {
+        CategoryAdapter(R.layout.item_category)
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_main
+    }
+
+    override fun initView() {
+        mBinding.adapter = mAdapter
+
+        mAdapter.setOnItemClickListener { adapter, view, position ->
+            when(position){
+                0->ARouter.getInstance().build(RouterPage.HINT_MAIN).navigation()
+                1->ARouter.getInstance().build(RouterPage.ROOM_MAIN).navigation()
+                2->ARouter.getInstance().build(RouterPage.DATASTORE_MAIN).navigation()
+            }
+        }
+    }
+
+    override fun initData() {
+        mViewModel.postValue()
+    }
+
+    override fun initObservable() {
+//        LiveDataBus.with("1111", String::class.java)?.postValue("22222")
+//
+//        LiveDataBus.with("1111", String::class.java)?.observe(this, Observer {
+//            showToast(it.toString())
+//        })
+//        lifecycle.addObserver(mViewModel)
+
+        val observer = Observer<MutableList<CategoryBean>> {
+            mAdapter.setNewInstance(list = it)
+        }
+        mViewModel.getList()?.observe(this,observer)
+    }
+
+
+    override fun isFullScreen(): Boolean {
+        return true
+    }
+}

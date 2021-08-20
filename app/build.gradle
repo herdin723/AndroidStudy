@@ -68,6 +68,7 @@ dependencies {
 
     implementation project(path: ':jetpack:hint')
     implementation project(path: ':jetpack:room')
+    implementation project(path: ':jetpack:datastore')
 //    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.5.21'
     kapt 'com.alibaba:arouter-compiler:1.5.2'
 
