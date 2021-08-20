@@ -18,7 +18,10 @@ import retrofit2.http.Path
 interface ApiService {
 
     companion object{
-        val api = RetrofitManager.createApi(this.javaClass)
+        val apiService by lazy {
+            RetrofitManager.createApi(ApiService::class.java)
+        }
+
     }
 
     @GET("/v2/sms/{phone}")
