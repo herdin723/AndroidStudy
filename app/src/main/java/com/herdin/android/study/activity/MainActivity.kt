@@ -1,5 +1,7 @@
 package com.herdin.android.study.activity
 
+import android.content.Context
+import android.content.pm.PackageManager
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -38,15 +40,16 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         mBinding.adapter = mAdapter
 
         mAdapter.setOnItemClickListener { adapter, view, position ->
-            when(position){
-                0->ARouter.getInstance().build(RouterPage.HINT_MAIN).navigation()
-                1->ARouter.getInstance().build(RouterPage.ROOM_MAIN).navigation()
-                2->ARouter.getInstance().build(RouterPage.DATASTORE_MAIN).navigation()
+            when (position) {
+                0 -> ARouter.getInstance().build(RouterPage.HINT_MAIN).navigation()
+                1 -> ARouter.getInstance().build(RouterPage.ROOM_MAIN).navigation()
+                2 -> ARouter.getInstance().build(RouterPage.DATASTORE_MAIN).navigation()
             }
         }
     }
 
     override fun initData() {
+        mBinding.textChannel.text = getChannelName(this)
         mViewModel.postValue()
     }
 
@@ -61,11 +64,31 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         val observer = Observer<MutableList<CategoryBean>> {
             mAdapter.setNewInstance(list = it)
         }
-        mViewModel.getList()?.observe(this,observer)
+        mViewModel.getList()?.observe(this, observer)
     }
 
 
     override fun isFullScreen(): Boolean {
         return true
     }
+
+    //获取当前渠道
+    fun getChannelName(context: Context): String? {
+        if (context == null) {
+            return null
+        }
+        var channelName:String? = null
+        var packageManager = context.packageManager
+        if (packageManager != null) {
+            var applicationInfo =
+                packageManager.getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
+                if (applicationInfo != null){
+                    if (applicationInfo.metaData != null){
+                        channelName  = applicationInfo.metaData["CHANNEL"].toString()
+                    }
+                }
+        }
+        return channelName
+    }
+
 }

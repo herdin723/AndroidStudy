@@ -28,6 +28,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        dev {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -43,6 +47,55 @@ android {
     }
     //gradle命名提示机制，让各module中资源名必须按一定前缀规则，有助于防止组件化多module时的资源冲突
 //    resourcePrefix "app_"
+    flavorDimensions 'huawei'
+    //产品特性
+    productFlavors{
+        huawei{
+            dimension 'huawei'
+            applicationId 'com.herdin.huawei.study'
+            manifestPlaceholders =[CHANNEL_VALUE:"huawei",APP_NAME:"AndroidStudy华为版"]
+        }
+        xiaomi{
+            dimension 'xiaomi'
+            applicationId 'com.herdin.xiaomi.study'
+            manifestPlaceholders =[CHANNEL_VALUE:"xiaomi",APP_NAME:"AndroidStudy小米版"]
+        }
+        oppo{
+            dimension 'oppo'
+            applicationId 'com.herdin.oppo.study'
+            manifestPlaceholders =[CHANNEL_VALUE:"oppo",APP_NAME:"AndroidStudyOPPO版"]
+        }
+        vivo{
+            dimension 'vivo'
+            applicationId 'com.herdin.vivo.study'
+            manifestPlaceholders =[CHANNEL_VALUE:"vivo",APP_NAME:"AndroidStudyVIVO版"]
+        }
+        google{
+            dimension 'google'
+            applicationId 'com.herdin.google.study'
+            manifestPlaceholders =[CHANNEL_VALUE:"google",APP_NAME:"AndroidStudy谷歌版"]
+        }
+    }
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java']
+        }
+        huawei{
+            java.srcDirs = ['src/hauwei/java']
+        }
+        xiaomi{
+            java.srcDirs = ['src/xiaomi/java']
+        }
+        oppo{
+            java.srcDirs = ['src/main/java']
+        }
+        vivo{
+            java.srcDirs = ['src/main/java']
+        }
+        google{
+            java.srcDirs = ['src/main/java']
+        }
+    }
 }
 
 tasks.withType(JavaCompile){
