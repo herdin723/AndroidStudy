@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+    println 'android start'
     compileSdk rootProject.ext.android.compileSdk
 
     defaultConfig {
@@ -33,6 +34,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    signingConfigs {
+        release {
+            keyAlias
+            keyPassword
+            storePassword
+            storeFile
+        }
+    }
+    // 读取签名配置
+    getSigningProperties()
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -47,9 +59,14 @@ android {
     }
     //gradle命名提示机制，让各module中资源名必须按一定前缀规则，有助于防止组件化多module时的资源冲突
 //    resourcePrefix "app_"
-    flavorDimensions 'huawei'
+    flavorDimensions 'android','huawei','xiaomi'
     //产品特性
     productFlavors{
+        android{
+            dimension 'android'
+            applicationId 'com.herdin.android.study'
+            manifestPlaceholders =[CHANNEL_VALUE:"android",APP_NAME:"AndroidStudy"]
+        }
         huawei{
             dimension 'huawei'
             applicationId 'com.herdin.huawei.study'
@@ -60,24 +77,10 @@ android {
             applicationId 'com.herdin.xiaomi.study'
             manifestPlaceholders =[CHANNEL_VALUE:"xiaomi",APP_NAME:"AndroidStudy小米版"]
         }
-        oppo{
-            dimension 'oppo'
-            applicationId 'com.herdin.oppo.study'
-            manifestPlaceholders =[CHANNEL_VALUE:"oppo",APP_NAME:"AndroidStudyOPPO版"]
-        }
-        vivo{
-            dimension 'vivo'
-            applicationId 'com.herdin.vivo.study'
-            manifestPlaceholders =[CHANNEL_VALUE:"vivo",APP_NAME:"AndroidStudyVIVO版"]
-        }
-        google{
-            dimension 'google'
-            applicationId 'com.herdin.google.study'
-            manifestPlaceholders =[CHANNEL_VALUE:"google",APP_NAME:"AndroidStudy谷歌版"]
-        }
+
     }
     sourceSets {
-        main {
+        android {
             java.srcDirs = ['src/main/java']
         }
         huawei{
@@ -85,15 +88,6 @@ android {
         }
         xiaomi{
             java.srcDirs = ['src/xiaomi/java']
-        }
-        oppo{
-            java.srcDirs = ['src/main/java']
-        }
-        vivo{
-            java.srcDirs = ['src/main/java']
-        }
-        google{
-            java.srcDirs = ['src/main/java']
         }
     }
 }
@@ -125,4 +119,31 @@ dependencies {
 //    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.5.21'
     kapt 'com.alibaba:arouter-compiler:1.5.2'
 
+}
+
+// 读取签名配置
+def getSigningProperties() {
+    def propFile = file('../signing.properties')
+    if (propFile.exists() && propFile.canRead()) {
+        def props = new Properties()
+        props.load(new FileInputStream(propFile))
+        if (props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
+                props.containsKey('KEY_ALIAS') && props.containsKey('KEY_PASSWORD')) {
+            android.signingConfigs.release.storeFile = file('../' + props['STORE_FILE'])
+            android.signingConfigs.release.storePassword = props['STORE_PASSWORD']
+            android.signingConfigs.release.keyAlias = props['KEY_ALIAS']
+            android.signingConfigs.release.keyPassword = props['KEY_PASSWORD']
+            println 'signing success'
+        } else {
+            println 'signing.properties are found but some entries are missed!'
+            android.buildTypes.release.signingConfig = null
+        }
+    } else {
+        println 'signing.properties are not found!'
+        android.buildTypes.release.signingConfig = null
+    }
+}
+
+static def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
 }
