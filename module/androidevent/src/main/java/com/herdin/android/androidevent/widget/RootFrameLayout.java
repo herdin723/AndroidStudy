@@ -1,56 +1,55 @@
-package com.herdin.android.player.widget;
+package com.herdin.android.androidevent.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
-import android.view.ViewGroup;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 /**
  * Copyright © 2014-2021, ArcVideo 杭州当虹科技股份有限公司
  *
  * @author: herdin
  * @email： heding@arcvideo.com
- * @date: 2021/8/27
+ * @date: 2021/8/30
  * @desc:
  * @version: V-1.0.0
  **/
-public  class PlayerViewGroup extends ConstraintLayout {
+public class RootFrameLayout extends FrameLayout {
 
+    public static final String TAG = "MainActivity_Root";
+    public RootFrameLayout(@NonNull Context context) {
+        this(context,null);
 
-    public PlayerViewGroup(@NonNull Context context) {
-        super(context);
     }
 
-    public PlayerViewGroup(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+    public RootFrameLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs,0);
     }
 
-    public PlayerViewGroup(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public RootFrameLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
-    protected boolean dispatchGenericFocusedEvent(MotionEvent event) {
-        return super.dispatchGenericFocusedEvent(event);
-    }
-
-    @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
+        Log.d(TAG, "dispatchTouchEvent: "+ev.getAction());
         return super.dispatchTouchEvent(ev);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        Log.d(TAG, "onInterceptTouchEvent: "+ev.getAction());
         return super.onInterceptTouchEvent(ev);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        Log.d(TAG, "onTouchEvent: "+event.getAction());
         return super.onTouchEvent(event);
     }
 }

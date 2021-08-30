@@ -35,4 +35,9 @@ class MainActivity : BaseActivity<PlayerActivityMainBinding, BaseViewModel>() {
     override fun initObservable() {
 
     }
+
+//    override fun onTouchEvent(event: MotionEvent): Boolean {
+//        Log.d("PlayerControlView", "activity onTouchEvent: "+event.action)
+//        return super.onTouchEvent(event)
+//    }
 }

@@ -44,6 +44,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                 0 -> ARouter.getInstance().build(RouterPage.HINT_MAIN).navigation()
                 1 -> ARouter.getInstance().build(RouterPage.ROOM_MAIN).navigation()
                 2 -> ARouter.getInstance().build(RouterPage.DATASTORE_MAIN).navigation()
+                3 -> ARouter.getInstance().build(RouterPage.EVENT_MAIN).navigation()
             }
         }
     }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.herdin.android.androidevent.widget.RootFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/teal_200">
+    <com.herdin.android.androidevent.widget.ChildFrameLayout
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@color/teal_700"
+        android:layout_gravity="center">
+        <com.herdin.android.androidevent.widget.ChildTextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:text="按钮"
+            android:gravity="center"
+            android:background="@color/purple_200"/>
+    </com.herdin.android.androidevent.widget.ChildFrameLayout>
+</com.herdin.android.androidevent.widget.RootFrameLayout>

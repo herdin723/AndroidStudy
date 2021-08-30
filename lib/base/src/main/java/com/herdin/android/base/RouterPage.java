@@ -29,4 +29,10 @@ public interface RouterPage {
      * datastore模块
      */
     String DATASTORE_MAIN = "/datastore/main";
+
+
+    /**
+     * androidevent
+     */
+    String EVENT_MAIN = "/androidevent/main";
 }
