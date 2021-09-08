@@ -2,11 +2,13 @@ package com.herdin.android.player.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
+import android.view.LayoutInflater;
 
 import androidx.annotation.Nullable;
 
 import com.herdin.android.player.R;
+import com.herdin.android.player.databinding.PlayerVideoViewBinding;
+import com.herdin.android.player.widget.control.PlayerControlView;
 
 /**
  * Copyright © 2014-2021, ArcVideo 杭州当虹科技股份有限公司
@@ -18,7 +20,8 @@ import com.herdin.android.player.R;
  * @version: V-1.0.0
  **/
 public class MyPlayerView extends AbPlayerView {
-    private Context mContext;
+
+    private PlayerVideoViewBinding mBinding;
     public MyPlayerView(Context context) {
         this(context,null);
     }
@@ -29,20 +32,19 @@ public class MyPlayerView extends AbPlayerView {
 
     public MyPlayerView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mContext = context;
-        init();
-    }
-
-    private void init() {
-        View.inflate(mContext, getLayoutId(), this);
-    }
-
-    private int getLayoutId() {
-        return R.layout.player_video_view;
     }
 
 
+    @Override
+    protected void init(Context context, AttributeSet attrs) {
+        super.init(context, attrs);
+        mBinding = PlayerVideoViewBinding.inflate(mInflater,this,true);
 
+    }
+
+    public void setControlView(PlayerControlView controlView){
+        addView(controlView);
+    }
 
 
 }

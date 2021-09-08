@@ -3,15 +3,11 @@ package com.herdin.android.study.activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.herdin.android.base.RouterPage
 import com.herdin.android.base.activty.BaseActivity
-import com.herdin.android.base.showToast
-import com.herdin.android.base.toVisible
-import com.herdin.android.base.utils.LiveDataBus
 import com.herdin.android.study.R
 import com.herdin.android.study.adapter.CategoryAdapter
 import com.herdin.android.study.bean.CategoryBean
@@ -45,6 +41,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                 1 -> ARouter.getInstance().build(RouterPage.ROOM_MAIN).navigation()
                 2 -> ARouter.getInstance().build(RouterPage.DATASTORE_MAIN).navigation()
                 3 -> ARouter.getInstance().build(RouterPage.EVENT_MAIN).navigation()
+                4 -> ARouter.getInstance().build(RouterPage.DSL_MAIN).navigation()
             }
         }
     }

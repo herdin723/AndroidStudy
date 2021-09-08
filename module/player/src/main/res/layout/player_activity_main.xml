@@ -17,7 +17,8 @@
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="match_parent" />-->
 
-        <com.herdin.android.player.widget.PlayerControlView
+        <com.herdin.android.player.widget.MyPlayerView
+            android:id="@+id/player_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

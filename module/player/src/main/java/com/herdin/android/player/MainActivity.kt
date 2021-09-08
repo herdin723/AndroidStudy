@@ -1,15 +1,14 @@
 package com.herdin.android.player
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import androidx.media2.common.MediaItem
-import androidx.media2.common.MediaMetadata
-import androidx.media2.common.SessionPlayer
 import androidx.media2.player.MediaPlayer
-import androidx.media2.session.MediaController
+import androidx.media2.widget.VideoView
 import com.herdin.android.base.activty.BaseActivity
 import com.herdin.android.base.vm.BaseViewModel
 import com.herdin.android.player.databinding.PlayerActivityMainBinding
+import com.herdin.android.player.widget.control.DanmakuControlView
+import com.herdin.android.player.widget.control.NormalControlView
+import com.herdin.android.player.widget.control.PlayerControlView
+import com.herdin.android.player.widget.control.StandardControlView
 
 class MainActivity : BaseActivity<PlayerActivityMainBinding, BaseViewModel>() {
 
@@ -18,14 +17,19 @@ class MainActivity : BaseActivity<PlayerActivityMainBinding, BaseViewModel>() {
     }
 
     override fun initView() {
-//        val player = MediaPlayer(this)
-//        var mutableListOf = mutableListOf<MediaItem>()
-//        var mediaItem = MediaItem.Builder()
-//        player.setPlaylist(mutableListOf,null)
-//        player.play()
-////        var mediaController = MediaController()
-////        mBinding.videoView.setMediaController(mediaController)
-//        mBinding.videoView.setPlayer(player)
+        var videoView = VideoView(this)
+        videoView.setMediaController(MediaController())
+        val player = MediaPlayer(this)
+        var mutableListOf = mutableListOf<MediaItem>()
+        var mediaItem = MediaItem.Builder()
+        player.setPlaylist(mutableListOf,null)
+        player.play()
+        var mediaController = MediaController()
+        mBinding.videoView.setMediaController(mediaController)
+        mBinding.videoView.setPlayer(player)
+        mBinding.playerView.setControlView(
+            StandardControlView(this)
+        )
     }
 
     override fun initData() {

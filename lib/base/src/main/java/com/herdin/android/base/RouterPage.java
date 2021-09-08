@@ -35,4 +35,10 @@ public interface RouterPage {
      * androidevent
      */
     String EVENT_MAIN = "/androidevent/main";
+
+
+    /**
+     * dsl
+     */
+    String DSL_MAIN = "/dsl/main";
 }
