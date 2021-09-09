@@ -16,5 +16,6 @@ public class AppConfig {
             "com.herdin.android.datastore.app.DataStoreApp",
             "com.herdin.android.androidevent.app.EventApp",
             "com.herdin.android.dsl.app.DSLApp",
+            "com.herdin.android.flow.app.FlowApp",
     };
 }

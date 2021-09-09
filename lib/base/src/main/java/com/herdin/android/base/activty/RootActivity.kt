@@ -1,5 +1,6 @@
 package com.herdin.android.base.activty
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
@@ -16,6 +17,9 @@ import com.alibaba.android.arouter.launcher.ARouter
  * @version: V-1.0.0
  **/
 open class RootActivity : AppCompatActivity() {
+
+    private var mProgressDialog :ProgressDialog?= null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         if (isFullScreen()) {
             requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -25,7 +29,7 @@ open class RootActivity : AppCompatActivity() {
             )
         }
         super.onCreate(savedInstanceState)
-
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         ARouter.getInstance().inject(this)
     }
 
@@ -37,6 +41,11 @@ open class RootActivity : AppCompatActivity() {
      */
     open fun showLoading(message: String) {
         //...
+        mProgressDialog = ProgressDialog(this)
+        mProgressDialog?.apply {
+            show()
+        }
+
     }
 
     /**
@@ -44,6 +53,7 @@ open class RootActivity : AppCompatActivity() {
      */
     open fun dismissLoading() {
         //...
+        mProgressDialog?.dismiss()
     }
 
     override fun onDestroy() {

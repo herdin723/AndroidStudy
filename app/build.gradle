@@ -118,6 +118,7 @@ dependencies {
     implementation project(path: ':jetpack:datastore')
     implementation project(path: ':module:androidevent')
     implementation project(path: ':kt:dsl')
+    implementation project(path: ':kt:flow')
 //    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.5.21'
     kapt 'com.alibaba:arouter-compiler:1.5.2'
 

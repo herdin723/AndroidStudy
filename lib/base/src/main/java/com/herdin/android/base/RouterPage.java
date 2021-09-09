@@ -41,4 +41,11 @@ public interface RouterPage {
      * dsl
      */
     String DSL_MAIN = "/dsl/main";
+
+
+
+    /**
+     * flow
+     */
+    String FLOW_MAIN = "/flow/main";
 }

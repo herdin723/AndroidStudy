@@ -35,13 +35,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override fun initView() {
         mBinding.adapter = mAdapter
 
-        mAdapter.setOnItemClickListener { adapter, view, position ->
+        mAdapter.setOnItemClickListener { _, _, position ->
             when (position) {
                 0 -> ARouter.getInstance().build(RouterPage.HINT_MAIN).navigation()
                 1 -> ARouter.getInstance().build(RouterPage.ROOM_MAIN).navigation()
                 2 -> ARouter.getInstance().build(RouterPage.DATASTORE_MAIN).navigation()
                 3 -> ARouter.getInstance().build(RouterPage.EVENT_MAIN).navigation()
                 4 -> ARouter.getInstance().build(RouterPage.DSL_MAIN).navigation()
+                5 -> ARouter.getInstance().build(RouterPage.FLOW_MAIN).navigation()
             }
         }
     }
@@ -76,7 +77,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
             return null
         }
         var channelName:String? = null
-        var packageManager = context.packageManager
+        val packageManager = context.packageManager
         if (packageManager != null) {
             var applicationInfo =
                 packageManager.getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
