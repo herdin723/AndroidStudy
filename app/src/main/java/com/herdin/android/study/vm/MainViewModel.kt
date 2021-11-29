@@ -28,29 +28,33 @@ class MainViewModel : BaseViewModel() {
     fun postValue() {
         val data = ArrayList<CategoryBean>()
 
-        val categoryBean = CategoryBean()
-        categoryBean.name = "Jetpack Hint"
-        data.add(categoryBean)
-
         val categoryBean1 = CategoryBean()
-        categoryBean1.name = "Jetpack Room"
+        categoryBean1.name = "Jetpack Hint"
         data.add(categoryBean1)
 
         val categoryBean2 = CategoryBean()
-        categoryBean2.name = "Jetpack Datastore"
+        categoryBean2.name = "Jetpack Room"
         data.add(categoryBean2)
 
         val categoryBean3 = CategoryBean()
-        categoryBean3.name = "Android Event"
+        categoryBean3.name = "Jetpack Datastore"
         data.add(categoryBean3)
 
         val categoryBean4 = CategoryBean()
-        categoryBean4.name = "Kotlin DSL"
+        categoryBean4.name = "Jetpack WorkManager"
         data.add(categoryBean4)
 
-        val categoryBean5 = CategoryBean()
-        categoryBean5.name = "Kotlin Flow"
-        data.add(categoryBean5)
+        val categoryBean101 = CategoryBean()
+        categoryBean101.name = "Android Event"
+        data.add(categoryBean101)
+
+        val categoryBean102 = CategoryBean()
+        categoryBean102.name = "Kotlin DSL"
+        data.add(categoryBean102)
+
+        val categoryBean103 = CategoryBean()
+        categoryBean103.name = "Kotlin Flow"
+        data.add(categoryBean103)
 
         getList()?.postValue(data)
     }

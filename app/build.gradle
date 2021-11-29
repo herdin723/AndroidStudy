@@ -116,6 +116,7 @@ dependencies {
     implementation project(path: ':jetpack:hint')
     implementation project(path: ':jetpack:room')
     implementation project(path: ':jetpack:datastore')
+    implementation project(path: ':jetpack:workmanager')
     implementation project(path: ':module:androidevent')
     implementation project(path: ':kt:dsl')
     implementation project(path: ':kt:flow')

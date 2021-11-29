@@ -25,12 +25,12 @@ class MainApp: BaseApplication() {
     }
     override fun initModuleApp(application: Application?) {
         Log.d(TAG, "initModuleApp: init main")
-        AppConfig.APPS.forEach { appName->
+        AppConfig2.APPS.forEach { appName->
             try {
                 val clazz = Class.forName(appName)
                 val baseApp = clazz.newInstance() as BaseApplication
                 baseApp.initModuleApp(this)
-                Log.d(TAG, "initModuleApp: success :")
+                Log.d(TAG, "initModuleApp: success :$appName")
             }catch (e:Exception){
                 e.printStackTrace()
                 Log.d(TAG, "initModuleApp: error :"+e.message)

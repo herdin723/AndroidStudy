@@ -1,6 +1,7 @@
 package com.arcvideo.android.dsl.app
 
 import android.app.Application
+import android.util.Log
 import com.herdin.android.base.app.BaseApplication
 
 /**
@@ -14,15 +15,18 @@ import com.herdin.android.base.app.BaseApplication
  **/
 class DSLApp :BaseApplication() {
 
+    private val TAG = DSLApp::class.java.simpleName
+
     override fun onCreate() {
         super.onCreate()
+        Log.d(TAG, "onCreate: DSL ")
         initModuleApp(this)
     }
     override fun initModuleApp(application: Application?) {
-        TODO("Not yet implemented")
+        Log.d(TAG, "initModuleApp: init DSL ")
     }
 
     override fun initModuleData(application: Application?) {
-        TODO("Not yet implemented")
+
     }
 }

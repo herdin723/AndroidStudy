@@ -40,9 +40,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                 0 -> ARouter.getInstance().build(RouterPage.HINT_MAIN).navigation()
                 1 -> ARouter.getInstance().build(RouterPage.ROOM_MAIN).navigation()
                 2 -> ARouter.getInstance().build(RouterPage.DATASTORE_MAIN).navigation()
-                3 -> ARouter.getInstance().build(RouterPage.EVENT_MAIN).navigation()
-                4 -> ARouter.getInstance().build(RouterPage.DSL_MAIN).navigation()
-                5 -> ARouter.getInstance().build(RouterPage.FLOW_MAIN).navigation()
+                3 -> ARouter.getInstance().build(RouterPage.WORK_MAIN).navigation()
+                4 -> ARouter.getInstance().build(RouterPage.EVENT_MAIN).navigation()
+                5 -> ARouter.getInstance().build(RouterPage.DSL_MAIN).navigation()
+                6 -> ARouter.getInstance().build(RouterPage.FLOW_MAIN).navigation()
             }
         }
     }
@@ -72,20 +73,17 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     }
 
     //获取当前渠道
-    fun getChannelName(context: Context): String? {
-        if (context == null) {
-            return null
-        }
-        var channelName:String? = null
+    private fun getChannelName(context: Context): String? {
+        var channelName: String? = null
         val packageManager = context.packageManager
         if (packageManager != null) {
-            var applicationInfo =
+            val applicationInfo =
                 packageManager.getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
-                if (applicationInfo != null){
-                    if (applicationInfo.metaData != null){
-                        channelName  = applicationInfo.metaData["CHANNEL"].toString()
-                    }
+            if (applicationInfo != null) {
+                if (applicationInfo.metaData != null) {
+                    channelName = applicationInfo.metaData["CHANNEL"].toString()
                 }
+            }
         }
         return channelName
     }

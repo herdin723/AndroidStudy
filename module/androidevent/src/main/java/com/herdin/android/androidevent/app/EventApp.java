@@ -1,6 +1,7 @@
 package com.herdin.android.androidevent.app;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.herdin.android.base.app.BaseApplication;
 
@@ -14,15 +15,17 @@ import com.herdin.android.base.app.BaseApplication;
  * @version: V-1.0.0
  **/
 public class EventApp extends BaseApplication {
+    public static final String TAG = EventApp.class.getSimpleName();
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.d(TAG, "onCreate: event ");
         initModuleApp(this);
     }
 
     @Override
     public void initModuleApp(Application application) {
-
+        Log.d(TAG, "initModuleApp: init event ");
     }
 
     @Override

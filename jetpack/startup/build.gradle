@@ -1,0 +1,74 @@
+if (isBuildModule.toBoolean()){
+    apply plugin :"com.android.application"
+}else {
+    apply plugin :"com.android.library"
+}
+apply plugin :"kotlin-android"
+apply plugin :"kotlin-kapt"
+
+android {
+    compileSdk rootProject.ext.android.compileSdk
+
+    defaultConfig {
+        if (isBuildModule.toBoolean()) {
+            applicationId "com.herdin.android.startup"
+        }
+        minSdk rootProject.ext.android.minSdk
+        targetSdk rootProject.ext.android.targetSdk
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [AROUTER_MODULE_NAME: project.getName()]
+//            }
+//        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        dev {
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures{
+        dataBinding = true
+        // for view binding :
+        // viewBinding = true
+    }
+    //gradle命名提示机制，让各module中资源名必须按一定前缀规则，有助于防止组件化多module时的资源冲突
+    resourcePrefix "startup_"
+
+    sourceSets {
+        main {
+            if (isBuildModule.toBoolean()) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
+}
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+dependencies {
+    api project(path: ':lib:base')
+    kapt 'com.alibaba:arouter-compiler:1.5.2'
+    implementation 'androidx.startup:startup-runtime:1.1.0'
+}

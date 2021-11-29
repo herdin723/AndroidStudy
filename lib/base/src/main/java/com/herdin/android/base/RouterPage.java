@@ -32,6 +32,12 @@ public interface RouterPage {
 
 
     /**
+     * work manager 模块
+     */
+    String WORK_MAIN = "/workmanager/main";
+
+
+    /**
      * androidevent
      */
     String EVENT_MAIN = "/androidevent/main";
